@@ -82,11 +82,70 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode)
 
 ---------------------------------------------------------------------------------------------------
 
-# OpenAPI
+# List of Documentation Managers
+
+* OpenAPI with Swagger
 
 > The openAPI with Swagger-UI is available to query and help understand the application by REST API
 
 * http://localhost:31303/swagger-ui/protector
+
+* OpenAPI with Adobe AEM
+
+> The openAPI with Adobe-AEM is available to query and help understand the application by REST API
+
+* http://localhost:31303/adobe-aem/protector
+
+* OpenAPI with Authentiq API
+
+> The openAPI with Authentiq API is available to query and help understand the application by REST API
+
+* http://localhost:31303/authentiq-api/protector
+
+---------------------------------------------------------------------------------------------------
+
+# OAuth2 Settings
+
+If your application use the OAuth2 as a security layer, can be needed to make any configurations in the scope of the 
+project as showed below...
+
+<code>
+
+    @Override
+    public void configure(final HttpSecurity http) throws Exception {
+       http.authorizeRequests()
+
+               /*APP SERVICES*/
+               .antMatchers("/users/delete").authenticated()
+               .antMatchers("/users/create").authenticated()
+
+               /*OTHERS SERVICES*/
+               .antMatchers("/auditory/view").authenticated()
+
+               /*SWAGGER*/
+               .antMatchers("/swagger/**").permitAll()
+               .antMatchers("/swagger-ui/**").permitAll()
+               .antMatchers("/api-docs/**").permitAll()
+               .antMatchers("/api-docs.yaml").permitAll()
+
+               /*API-DOC-GUARD*/
+               .antMatchers("/doc-protect/**").permitAll()
+               .antMatchers("/api-doc-guard/**").permitAll()
+               .antMatchers("/api-docs-guard/**").permitAll()
+
+               /*CUSTOM*/
+               .antMatchers(custom_api_prefix+"/swagger/**").permitAll()
+               .antMatchers(custom_api_prefix+"/swagger-ui/**").permitAll()
+               .antMatchers(custom_api_prefix+"/doc-protect/**").permitAll()
+               .antMatchers(custom_api_prefix+"/api-doc-guard/**").permitAll()
+               .antMatchers(custom_api_prefix+"/api-docs-guard/**").permitAll()
+
+               /*ACTUATOR*/
+               .antMatchers("/actuator/**").permitAll().anyRequest().authenticated();
+    
+    }
+
+</code>
 
 ---------------------------------------------------------------------------------------------------
 
