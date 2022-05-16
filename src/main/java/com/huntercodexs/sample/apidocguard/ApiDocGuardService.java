@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -319,5 +321,43 @@ public class ApiDocGuardService {
             return bCryptPasswordEncoder.encode(data);
         }
         return null;
+    }
+
+    public String generator(Map<String, String> body) {
+        String result = null;
+
+        try {
+
+            String username = body.get("username");
+            String password = body.get("password");
+            String name = body.get("name");
+            String email = body.get("email");
+            String level = body.get("level");
+            String active = body.get("active");
+
+            if (
+                    username.equals("") ||
+                            password.equals("") ||
+                            name.equals("") ||
+                            email.equals("") ||
+                            level.equals("") ||
+                            active.equals("")
+            ) {
+                return "Missing data, check your request";
+            }
+
+            Date now = new Date();
+            String currentDate = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").format(now);
+
+            result = "INSERT INTO api_doc_guard VALUES " +
+                    "(active,createdAt,deletedAt,email,level,name,password,updatedAt,username) " +
+                    "VALUES " +
+                    "('"+active+"','"+currentDate+"',NULL,'"+email+"','"+level+"','"+name+"','"+password+"',NULL,'"+username+"');";
+
+        } catch (RuntimeException re) {
+            return "Exception, " + re.getMessage();
+        }
+
+        return result;
     }
 }

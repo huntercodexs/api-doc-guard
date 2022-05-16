@@ -43,7 +43,10 @@ public class ApiDocGuardSwagger {
 			"/swagger-ui/protector",
 			"/swagger-ui/doc-protected",
 			"/swagger-ui/index",
-			"/swagger-ui/index.html"
+			"/swagger-ui/index.html",
+
+			/*Custom*/
+			"**/swagger-ui/swagger-ui/**.html"
 	})
 	public String sentinelSwaggerRoute(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getServletPath().equals("/doc-protect/logout")) {
@@ -63,5 +66,4 @@ public class ApiDocGuardSwagger {
 	) {
 		return apiDocGuardService.protector(req, res, body);
 	}
-
 }

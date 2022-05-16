@@ -2,13 +2,15 @@ package com.huntercodexs.sample.apidocguard;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -19,8 +21,8 @@ public class ApiDocGuard {
 
 	@Operation(hidden = true)
 	@GetMapping(path = {
-			"{$springdoc.api-docs.path:/api/docs}",
-			"{$springdoc.api-docs.path:/api/docs}/swagger-config",
+			"${springdoc.api-docs.path:/api/docs}",
+			"${springdoc.api-docs.path:/api/docs}/swagger-config",
 			"/api-docs",
 			"/api-docs/swagger-config",
 			"/api-doc-guard",
@@ -65,6 +67,13 @@ public class ApiDocGuard {
 	@GetMapping(path = "/doc-protect/sentinel")
 	public ModelAndView sentinel() {
 		return apiDocGuardService.protector(null, null, null);
+	}
+
+	@Operation(hidden = true)
+	@PostMapping(path = "/doc-protect/generator/user", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@ResponseBody
+	public String generator(@Valid @RequestParam Map<String, String> body) {
+		return apiDocGuardService.generator(body);
 	}
 
 }
