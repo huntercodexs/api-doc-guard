@@ -1,0 +1,1756 @@
+{
+	"info": {
+		"_postman_id": "f523be5e-e5ac-41d1-a92c-f7b909bf5754",
+		"name": "JAVA - API-DOC-GUARD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SampleApplication",
+			"item": [
+				{
+					"name": "Create Users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/sample-application/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"sample-application",
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/sample-application/api/users/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"sample-application",
+								"api",
+								"users",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/sample-application/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"sample-application",
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/sample-application/api/users/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"sample-application",
+								"api",
+								"users",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/sample-application/api/users/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"sample-application",
+								"api",
+								"users",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/sample-application/api/users/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"sample-application",
+								"api",
+								"users",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ApiDocGuard",
+			"item": [
+				{
+					"name": "Generator User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "jereelton",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "jereelton",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jereelton@email.com",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "active",
+									"value": "yes",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/generator/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"generator",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ApiDocGuard sentinelApiDocsRoute",
+			"item": [
+				{
+					"name": "Api Docs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/api-docs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"api-docs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Api Docs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:31303/api-docs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "31303",
+									"path": [
+										"api-docs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html;charset=UTF-8"
+								},
+								{
+									"key": "Content-Language",
+									"value": "pt-BR"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 13 May 2022 18:24:10 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Api Doc Guard</title>\n        <style>\n        * {\n            margin: 5px;\n            padding: 0;\n            font-family: verdana, sans-serif;\n        }\n        body {\n            background: #C9C9CA;\n        }\n        body > form:nth-child(1) > p:nth-child(1) {\n            width: 100%;\n            text-align: center;\n            font-size: 54px;\n            color: #888;\n        }\n        body > form:nth-child(1) > p:nth-child(6) {\n            text-align: center;\n        }\n        body > form:nth-child(1) > p:nth-child(7) {\n            text-align: center;\n        }\n        form {\n            width: 500px;\n            height: 300px;\n            padding: 20px;\n            margin: 70px auto;\n        }\n        h3 {\n            text-align: center !important;\n            margin-bottom: 25px;\n            padding: 20px;\n            color: #FFF;\n            color: #939397;\n            border-bottom: solid 1px;\n        }\n        input[type=text], input[type=password] {\n            width: 100%;\n            color: #888;\n            font-size: 18px;\n            margin: 5px auto !important;\n            border-box: box-sizing;\n            box-sizing: border-box;\n            padding: 15px !important;\n        }\n        #bt-login {\n            padding: 13px 13px;\n            background: #4d95e1;\n            color: #FFF;\n            width: 140px;\n            border: none;\n            border-radius: 9px;\n            font-size: 18px;\n            font-weight: bold;\n            box-shadow: 1px 2px 3px #888;\n        }\n        #error-login {\n            color: #DD0B0B;\n            margin: 20px 10px;\n            text-align: center;\n        }\n        #hidden-api-doc-guard-type {\n            display: none !important;\n        }\n    </style>\n    </head>\n    <body>\n        <form method='POST' action=\"/swagger-ui/protector\" enctype='application/x-www-form-urlencoded'>\n            <p style=\"width: 100%;text-align: center;font-size: 54px;color: #888;\">&#9661;</p>\n            <h3>API DOC GUARD</h3>\n            <p>Username</p>\n            <p>\n                <input type='text' name='username' id='username' value=\"jereelton\" />\n            </p>\n            <p>Password</p>\n            <p>\n                <input type='password' name='password' id='password' value=\"1234\" />\n            </p>\n            <p>\n                <input type='submit' id='bt-login' value='Sign' />\n            </p>\n            <p id=\"error-login\"></p>\n            <input id=\"hidden-api-doc-guard-type\" type=\"hidden\" value=\"/swagger-ui/protector\" />\n        </form>\n        <script>\n    window.onload = function() {\n        let api_doc_guard_type = document.getElementById('hidden-api-doc-guard-type').value;\n        if (window.location.href.search(api_doc_guard_type) !== -1) {\n            document.getElementById('error-login').innerHTML = 'Login Failed';\n        }\n    }\n</script>\n    </body>\n</html>"
+						}
+					]
+				},
+				{
+					"name": "Api Docs Swagger Config",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/api-docs/swagger-config",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"api-docs",
+								"swagger-config"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Api Docs Swagger Config",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:31303/api-docs/swagger-config",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "31303",
+									"path": [
+										"api-docs",
+										"swagger-config"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html;charset=UTF-8"
+								},
+								{
+									"key": "Content-Language",
+									"value": "pt-BR"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 13 May 2022 18:29:24 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Api Doc Guard</title>\n        <style>\n        * {\n            margin: 5px;\n            padding: 0;\n            font-family: verdana, sans-serif;\n        }\n        body {\n            background: #C9C9CA;\n        }\n        body > form:nth-child(1) > p:nth-child(1) {\n            width: 100%;\n            text-align: center;\n            font-size: 54px;\n            color: #888;\n        }\n        body > form:nth-child(1) > p:nth-child(6) {\n            text-align: center;\n        }\n        body > form:nth-child(1) > p:nth-child(7) {\n            text-align: center;\n        }\n        form {\n            width: 500px;\n            height: 300px;\n            padding: 20px;\n            margin: 70px auto;\n        }\n        h3 {\n            text-align: center !important;\n            margin-bottom: 25px;\n            padding: 20px;\n            color: #FFF;\n            color: #939397;\n            border-bottom: solid 1px;\n        }\n        input[type=text], input[type=password] {\n            width: 100%;\n            color: #888;\n            font-size: 18px;\n            margin: 5px auto !important;\n            border-box: box-sizing;\n            box-sizing: border-box;\n            padding: 15px !important;\n        }\n        #bt-login {\n            padding: 13px 13px;\n            background: #4d95e1;\n            color: #FFF;\n            width: 140px;\n            border: none;\n            border-radius: 9px;\n            font-size: 18px;\n            font-weight: bold;\n            box-shadow: 1px 2px 3px #888;\n        }\n        #error-login {\n            color: #DD0B0B;\n            margin: 20px 10px;\n            text-align: center;\n        }\n        #hidden-api-doc-guard-type {\n            display: none !important;\n        }\n    </style>\n    </head>\n    <body>\n        <form method='POST' action=\"/swagger-ui/protector\" enctype='application/x-www-form-urlencoded'>\n            <p style=\"width: 100%;text-align: center;font-size: 54px;color: #888;\">&#9661;</p>\n            <h3>API DOC GUARD</h3>\n            <p>Username</p>\n            <p>\n                <input type='text' name='username' id='username' value=\"jereelton\" />\n            </p>\n            <p>Password</p>\n            <p>\n                <input type='password' name='password' id='password' value=\"1234\" />\n            </p>\n            <p>\n                <input type='submit' id='bt-login' value='Sign' />\n            </p>\n            <p id=\"error-login\"></p>\n            <input id=\"hidden-api-doc-guard-type\" type=\"hidden\" value=\"/swagger-ui/protector\" />\n        </form>\n        <script>\n    window.onload = function() {\n        let api_doc_guard_type = document.getElementById('hidden-api-doc-guard-type').value;\n        if (window.location.href.search(api_doc_guard_type) !== -1) {\n            document.getElementById('error-login').innerHTML = 'Login Failed';\n        }\n    }\n</script>\n    </body>\n</html>"
+						}
+					]
+				},
+				{
+					"name": "Api Docs Guard",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/api-docs-guard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"api-docs-guard"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Api Docs Guard",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:31303/api-docs-guard",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "31303",
+									"path": [
+										"api-docs-guard"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html;charset=UTF-8"
+								},
+								{
+									"key": "Content-Language",
+									"value": "pt-BR"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 13 May 2022 18:30:20 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Api Doc Guard</title>\n        <style>\n        * {\n            margin: 5px;\n            padding: 0;\n            font-family: verdana, sans-serif;\n        }\n        body {\n            background: #C9C9CA;\n        }\n        body > form:nth-child(1) > p:nth-child(1) {\n            width: 100%;\n            text-align: center;\n            font-size: 54px;\n            color: #888;\n        }\n        body > form:nth-child(1) > p:nth-child(6) {\n            text-align: center;\n        }\n        body > form:nth-child(1) > p:nth-child(7) {\n            text-align: center;\n        }\n        form {\n            width: 500px;\n            height: 300px;\n            padding: 20px;\n            margin: 70px auto;\n        }\n        h3 {\n            text-align: center !important;\n            margin-bottom: 25px;\n            padding: 20px;\n            color: #FFF;\n            color: #939397;\n            border-bottom: solid 1px;\n        }\n        input[type=text], input[type=password] {\n            width: 100%;\n            color: #888;\n            font-size: 18px;\n            margin: 5px auto !important;\n            border-box: box-sizing;\n            box-sizing: border-box;\n            padding: 15px !important;\n        }\n        #bt-login {\n            padding: 13px 13px;\n            background: #4d95e1;\n            color: #FFF;\n            width: 140px;\n            border: none;\n            border-radius: 9px;\n            font-size: 18px;\n            font-weight: bold;\n            box-shadow: 1px 2px 3px #888;\n        }\n        #error-login {\n            color: #DD0B0B;\n            margin: 20px 10px;\n            text-align: center;\n        }\n        #hidden-api-doc-guard-type {\n            display: none !important;\n        }\n    </style>\n    </head>\n    <body>\n        <form method='POST' action=\"/swagger-ui/protector\" enctype='application/x-www-form-urlencoded'>\n            <p style=\"width: 100%;text-align: center;font-size: 54px;color: #888;\">&#9661;</p>\n            <h3>API DOC GUARD</h3>\n            <p>Username</p>\n            <p>\n                <input type='text' name='username' id='username' value=\"jereelton\" />\n            </p>\n            <p>Password</p>\n            <p>\n                <input type='password' name='password' id='password' value=\"1234\" />\n            </p>\n            <p>\n                <input type='submit' id='bt-login' value='Sign' />\n            </p>\n            <p id=\"error-login\"></p>\n            <input id=\"hidden-api-doc-guard-type\" type=\"hidden\" value=\"/swagger-ui/protector\" />\n        </form>\n        <script>\n    window.onload = function() {\n        let api_doc_guard_type = document.getElementById('hidden-api-doc-guard-type').value;\n        if (window.location.href.search(api_doc_guard_type) !== -1) {\n            document.getElementById('error-login').innerHTML = 'Login Failed';\n        }\n    }\n</script>\n    </body>\n</html>"
+						}
+					]
+				},
+				{
+					"name": "Api Docs Guard Swagger Config",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/api-docs-guard/swagger-config",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"api-docs-guard",
+								"swagger-config"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Api Docs Guard Swagger Config",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:31303/api-docs-guard/swagger-config",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "31303",
+									"path": [
+										"api-docs-guard",
+										"swagger-config"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html;charset=UTF-8"
+								},
+								{
+									"key": "Content-Language",
+									"value": "pt-BR"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 13 May 2022 18:31:41 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Api Doc Guard</title>\n        <style>\n        * {\n            margin: 5px;\n            padding: 0;\n            font-family: verdana, sans-serif;\n        }\n        body {\n            background: #C9C9CA;\n        }\n        body > form:nth-child(1) > p:nth-child(1) {\n            width: 100%;\n            text-align: center;\n            font-size: 54px;\n            color: #888;\n        }\n        body > form:nth-child(1) > p:nth-child(6) {\n            text-align: center;\n        }\n        body > form:nth-child(1) > p:nth-child(7) {\n            text-align: center;\n        }\n        form {\n            width: 500px;\n            height: 300px;\n            padding: 20px;\n            margin: 70px auto;\n        }\n        h3 {\n            text-align: center !important;\n            margin-bottom: 25px;\n            padding: 20px;\n            color: #FFF;\n            color: #939397;\n            border-bottom: solid 1px;\n        }\n        input[type=text], input[type=password] {\n            width: 100%;\n            color: #888;\n            font-size: 18px;\n            margin: 5px auto !important;\n            border-box: box-sizing;\n            box-sizing: border-box;\n            padding: 15px !important;\n        }\n        #bt-login {\n            padding: 13px 13px;\n            background: #4d95e1;\n            color: #FFF;\n            width: 140px;\n            border: none;\n            border-radius: 9px;\n            font-size: 18px;\n            font-weight: bold;\n            box-shadow: 1px 2px 3px #888;\n        }\n        #error-login {\n            color: #DD0B0B;\n            margin: 20px 10px;\n            text-align: center;\n        }\n        #hidden-api-doc-guard-type {\n            display: none !important;\n        }\n    </style>\n    </head>\n    <body>\n        <form method='POST' action=\"/swagger-ui/protector\" enctype='application/x-www-form-urlencoded'>\n            <p style=\"width: 100%;text-align: center;font-size: 54px;color: #888;\">&#9661;</p>\n            <h3>API DOC GUARD</h3>\n            <p>Username</p>\n            <p>\n                <input type='text' name='username' id='username' value=\"jereelton\" />\n            </p>\n            <p>Password</p>\n            <p>\n                <input type='password' name='password' id='password' value=\"1234\" />\n            </p>\n            <p>\n                <input type='submit' id='bt-login' value='Sign' />\n            </p>\n            <p id=\"error-login\"></p>\n            <input id=\"hidden-api-doc-guard-type\" type=\"hidden\" value=\"/swagger-ui/protector\" />\n        </form>\n        <script>\n    window.onload = function() {\n        let api_doc_guard_type = document.getElementById('hidden-api-doc-guard-type').value;\n        if (window.location.href.search(api_doc_guard_type) !== -1) {\n            document.getElementById('error-login').innerHTML = 'Login Failed';\n        }\n    }\n</script>\n    </body>\n</html>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ApiDocGuard sentinelDocProtectRoute",
+			"item": [
+				{
+					"name": "Doc Protect Root",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Error",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/error",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"error"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Sign",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/sign",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"sign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Viewer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/viewer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"viewer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Protector",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/protector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"protector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Sentinel",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/sentinel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"sentinel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Doc Protector",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/doc-protector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"doc-protector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Index",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/index",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Index.html",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/index.html",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"index.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Swagger",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/swagger",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"swagger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Swagger UI",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/swagger-ui",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"swagger-ui"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Adobe",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/adobe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"adobe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Adobe AEM",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/adobe-aem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"adobe-aem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Authentiq",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/authentiq",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"authentiq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Doc Protect Authentiq API",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/doc-protect/authentiq-api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"doc-protect",
+								"authentiq-api"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ApiDocGuardAdobeAem sentinelAdobeAemRoute",
+			"item": [
+				{
+					"name": "Adobe AEM 1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM 2",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Sign",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/sign",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"sign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Viewer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/viewer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"viewer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Protector",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/protector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"protector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Doc Protected",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/doc-protected",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"doc-protected"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Index",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/index",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Index.html",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/index.html",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"index.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adobe AEM Protector",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "F1F2F3F4F4",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "jereelton",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "apidocguard_sec",
+									"value": "686d5c3c15231580ee01935d69bfa261",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:31303/adobe-aem/protector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"adobe-aem",
+								"protector"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ApiDocGuardAuthentiqApi sentinelAuthentiqRoute",
+			"item": [
+				{
+					"name": "Authentiq API 1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API 2",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Sign",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/sign",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"sign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Viewer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/viewer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"viewer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Protector",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/protector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"protector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Doc Protected",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/doc-protected",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"doc-protected"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Index",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/index",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Index.html",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/index.html",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"index.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentiq API Protector",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "F1F2F3F4F4",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "jereelton",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "apidocguard_sec",
+									"value": "686d5c3c15231580ee01935d69bfa261",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:31303/authentiq-api/protector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"authentiq-api",
+								"protector"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ApiDocGuardSwagger sentinelSwaggerRoute",
+			"item": [
+				{
+					"name": "Swagger UI 1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI 2",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Sign",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/sign",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"sign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Viewer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/viewer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"viewer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Protector",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/protector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"protector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Doc Protected",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/doc-protected",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"doc-protected"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Index",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/index",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Index.html",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/index.html",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"index.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swagger UI Protector",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "F1F2F3F4F4",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "jereelton",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "apidocguard_sec",
+									"value": "686d5c3c15231580ee01935d69bfa261",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:31303/swagger-ui/protector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31303",
+							"path": [
+								"swagger-ui",
+								"protector"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
