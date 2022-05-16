@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Api Doc Guard</title>
+    <style>
+        * {
+            margin: 5px;
+            padding: 0;
+            font-family: verdana, sans-serif;
+        }
+        body {
+            background: #C9C9CA;
+        }
+        body > form:nth-child(1) > p:nth-child(1) {
+            width: 100%;
+            text-align: center;
+            font-size: 54px;
+            color: #888;
+        }
+        body > form:nth-child(1) > p:nth-child(6) {
+            text-align: center;
+        }
+        body > form:nth-child(1) > p:nth-child(7) {
+            text-align: center;
+        }
+        form {
+            width: 500px;
+            height: 300px;
+            padding: 20px;
+            margin: 70px auto;
+        }
+        h3 {
+            text-align: center !important;
+            margin-bottom: 25px;
+            padding: 20px;
+            color: #FFF;
+            color: #939397;
+            border-bottom: solid 1px;
+        }
+        input[type=text], input[type=password] {
+            width: 100%;
+            color: #888;
+            font-size: 18px;
+            margin: 5px auto !important;
+            border-box: box-sizing;
+            box-sizing: border-box;
+            padding: 15px !important;
+        }
+        #bt-login {
+            padding: 13px 13px;
+            background: #4d95e1;
+            color: #FFF;
+            width: 140px;
+            border: none;
+            border-radius: 9px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 1px 2px 3px #888;
+        }
+        #error-login {
+            color: #DD0B0B;
+            margin: 20px 10px;
+            text-align: center;
+        }
+        #hidden-api-doc-guard-type {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <form method='POST' th:action="${api_doc_guard_type}" enctype='application/x-www-form-urlencoded'>
+        <p style="width: 100%;text-align: center;font-size: 54px;color: #888;">&#9661;</p>
+        <h3>API DOC GUARD</h3>
+        <p>Username</p>
+        <p>
+            <input type='text' name='username' id='username' value="jereelton" />
+        </p>
+        <p>Password</p>
+        <p>
+            <input type='password' name='password' id='password' value="1234" />
+        </p>
+        <p>
+            <input type='submit' id='bt-login' value='Sign' />
+        </p>
+        <p id="error-login"></p>
+        <input id="hidden-api-doc-guard-type" type="hidden" th:value="${api_doc_guard_type}" />
+        <input id="hidden-api-doc-guard-sec" name="apidocguard_sec" type="hidden" th:value="${api_doc_guard_sec}" />
+    </form>
+<script>
+    window.onload = function() {
+        let api_doc_guard_type = document.getElementById('hidden-api-doc-guard-type').value;
+        if (window.location.href.search(api_doc_guard_type) !== -1) {
+            document.getElementById('error-login').innerHTML = 'Login Failed';
+        }
+    }
+</script>
+</body>
+</html>
