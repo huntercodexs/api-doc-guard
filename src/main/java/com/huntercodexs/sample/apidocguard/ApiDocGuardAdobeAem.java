@@ -14,38 +14,26 @@ import java.util.Map;
 
 @Controller
 @CrossOrigin(origins = "*")
-public class ApiDocGuardSwagger {
+public class ApiDocGuardAdobeAem {
 
 	@Autowired
     ApiDocGuardService apiDocGuardService;
 
 	@Operation(hidden = true)
 	@GetMapping(path = {
-			/*Swagger*/
-			"/swagger",
-			"/swagger/",
-			"/swagger/login",
-			"/swagger/sign",
-			"/swagger/viewer",
-			"/swagger/logout",
-			"/swagger/protector",
-			"/swagger/doc-protected",
-			"/swagger/index",
-			"/swagger/index.html",
-
-			/*Swagger-UI*/
-			"/swagger-ui",
-			"/swagger-ui/",
-			"/swagger-ui/login",
-			"/swagger-ui/sign",
-			"/swagger-ui/viewer",
-			"/swagger-ui/logout",
-			"/swagger-ui/protector",
-			"/swagger-ui/doc-protected",
-			"/swagger-ui/index",
-			"/swagger-ui/index.html"
+			/*Adobe*/
+			"/adobe-aem",
+			"/adobe-aem/",
+			"/adobe-aem/login",
+			"/adobe-aem/sign",
+			"/adobe-aem/viewer",
+			"/adobe-aem/logout",
+			"/adobe-aem/protector",
+			"/adobe-aem/doc-protected",
+			"/adobe-aem/index",
+			"/adobe-aem/index.html"
 	})
-	public String sentinelSwaggerRoute(HttpServletRequest request, HttpServletResponse response) {
+	public String sentinelAdobeAemRoute(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getServletPath().equals("/doc-protect/logout")) {
 			response.setHeader("Api-Doc-Guard-User", null);
 			return "redirect:/doc-protect/sentinel";
@@ -54,7 +42,7 @@ public class ApiDocGuardSwagger {
 	}
 
 	@Operation(hidden = true)
-	@PostMapping(path = "/swagger-ui/protector", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@PostMapping(path = "/adobe-aem/protector", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	@ResponseBody
 	public ModelAndView protector(
 			HttpServletRequest req,
