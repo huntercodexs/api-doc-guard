@@ -320,7 +320,7 @@ public class ApiDocGuardService {
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
             return bCryptPasswordEncoder.encode(data);
         }
-        return null;
+        return data;
     }
 
     public String generator(Map<String, String> body) {
@@ -348,11 +348,12 @@ public class ApiDocGuardService {
 
             Date now = new Date();
             String currentDate = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").format(now);
+            String passwordCrypt = dataCrypt(password);
 
             result = "INSERT INTO api_doc_guard VALUES " +
                     "(active,createdAt,deletedAt,email,level,name,password,updatedAt,username) " +
                     "VALUES " +
-                    "('"+active+"','"+currentDate+"',NULL,'"+email+"','"+level+"','"+name+"','"+password+"',NULL,'"+username+"');";
+                    "('"+active+"','"+currentDate+"',NULL,'"+email+"','"+level+"','"+name+"','"+passwordCrypt+"',NULL,'"+username+"');";
 
         } catch (RuntimeException re) {
             return "Exception, " + re.getMessage();
