@@ -350,10 +350,8 @@ public class ApiDocGuardService {
             String currentDate = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").format(now);
             String passwordCrypt = dataCrypt(password);
 
-            result = "INSERT INTO api_doc_guard VALUES " +
-                    "(active,createdAt,deletedAt,email,level,name,password,updatedAt,username) " +
-                    "VALUES " +
-                    "('"+active+"','"+currentDate+"',NULL,'"+email+"','"+level+"','"+name+"','"+passwordCrypt+"',NULL,'"+username+"');";
+            result = "INSERT INTO api_doc_guard (active,createdAt,deletedAt,email,level,name,password,updatedAt,username) " +
+                    "VALUES ('"+active+"','"+currentDate+"',NULL,'"+email+"','"+level+"','"+name+"','"+passwordCrypt+"',NULL,'"+username+"');";
 
         } catch (RuntimeException re) {
             return "Exception, " + re.getMessage();
