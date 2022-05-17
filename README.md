@@ -10,6 +10,12 @@ is intercepted and is required a login by username and password.
 This can be look in ApiDocGuardSwagger that is placed in the apidocguard package (path) 
 in the current application, is very simple just make the correct settings explained below.
 
+# Overview
+
+Below is the diagram flow to explain with more details as the API DOC GUARD work.
+
+![img.png](./src/data/info/apidocguard-diagram-flow.png)
+
 # Resources
 
 * Java 8 (jdk-1.8-212)
@@ -254,15 +260,15 @@ Use the current file index.html contained in this project, replace the original 
 
 <code>
 
-package com.huntercodexs.sample.apidocguard;
-
-//Imports...
-
-@Controller
-@CrossOrigin(origins = "*")
-public class ApiDocGuard {
-    //Code here
-}
+    package com.huntercodexs.sample.apidocguard;
+    
+    //Imports...
+    
+    @Controller
+    @CrossOrigin(origins = "*")
+    public class ApiDocGuard {
+        //Code here
+    }
 
 </code>
 
