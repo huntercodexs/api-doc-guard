@@ -49,7 +49,6 @@ public class ApiDocGuard {
 			"/doc-protect/",
 			"/doc-protect/sign",
 			"/doc-protect/viewer",
-			/*"/doc-protect/protector",*/
 			"/doc-protect/doc-protected",
 			"/doc-protect/index.html",
 			"/doc-protect/generator/user",

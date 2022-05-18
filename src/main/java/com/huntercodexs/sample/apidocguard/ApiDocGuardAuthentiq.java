@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Controller
 @CrossOrigin(origins = "*")
-public class ApiDocGuardSwagger {
+public class ApiDocGuardAuthentiq {
 
 	@Autowired
 	ApiDocGuardHelper apiDocGuardHelper;
@@ -29,27 +29,27 @@ public class ApiDocGuardSwagger {
 
 	@Operation(hidden = true)
 	@GetMapping(path = {
-			/*Swagger*/
-			"/swagger",
-			"/swagger/",
-			"/swagger/login",
-			"/swagger/sign",
-			"/swagger/viewer",
-			"/swagger/logout",
-			"/swagger/doc-protected",
-			"/swagger/index",
-			"/swagger/index.html",
+			/*Authentiq*/
+			"/authentiq",
+			"/authentiq/",
+			"/authentiq/login",
+			"/authentiq/sign",
+			"/authentiq/viewer",
+			"/authentiq/logout",
+			"/authentiq/doc-protected",
+			"/authentiq/index",
+			"/authentiq/index.html",
 
-			/*Swagger-UI*/
-			"/swagger-ui",
-			"/swagger-ui/",
-			"/swagger-ui/login",
-			"/swagger-ui/sign",
-			"/swagger-ui/viewer",
-			"/swagger-ui/logout",
-			"/swagger-ui/doc-protected",
-			"/swagger-ui/index",
-			"/swagger-ui/index.html"
+			/*Authentiq-API*/
+			"/authentiq-api",
+			"/authentiq-api/",
+			"/authentiq-api/login",
+			"/authentiq-api/sign",
+			"/authentiq-api/viewer",
+			"/authentiq-api/logout",
+			"/authentiq-api/doc-protected",
+			"/authentiq-api/index",
+			"/authentiq-api/index.html"
 	})
 	public String routes(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
 		return apiDocGuardRedirect.sentinel(req, res, ses);
@@ -57,8 +57,8 @@ public class ApiDocGuardSwagger {
 
 	@Operation(hidden = true)
 	@GetMapping(path = {
-			"${springdoc.swagger-ui.path}/swagger-ui/{page}",
-			"${springdoc.swagger-ui.path:/fake-prefix/fake-path}/{page}"
+			"${springdoc.authentiq-api.path}/authentiq-api/{page}",
+			"${springdoc.authentiq-api.path:/fake-prefix/fake-path}/{page}"
 	})
 	public String custom(
 			HttpServletRequest req,
@@ -70,19 +70,19 @@ public class ApiDocGuardSwagger {
 	}
 
 	@Operation(hidden = true)
-	@GetMapping(path = "/swagger-ui/protector")
-	public ModelAndView swagger(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+	@GetMapping(path = "/authentiq-api/protector")
+	public ModelAndView authentiq(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
 		Map<String, String> body = new HashMap<>();
 		try {
 			body.put("ApiDocGuardRefresh", ses.getAttribute("ApiDocGuardRefresh").toString());
 		} catch (RuntimeException re) {
-			apiDocGuardHelper.debug("SWAGGER-UI -> PROTECTOR FOUND AN ERROR !!!", "warn");
+			apiDocGuardHelper.debug("AUTHENTIQ-API -> PROTECTOR FOUND AN ERROR !!!", "warn");
 		}
 		return apiDocGuardViewer.protector(req, res, ses, body);
 	}
 
 	@Operation(hidden = true)
-	@PostMapping(path = "/swagger-ui/protector", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@PostMapping(path = "/authentiq-api/protector", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	@ResponseBody
 	public ModelAndView protector(
 			HttpServletRequest req,
