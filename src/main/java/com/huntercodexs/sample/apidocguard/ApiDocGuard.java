@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -48,25 +49,24 @@ public class ApiDocGuard {
 			"/doc-protect/doc-protected",
 			"/doc-protect/index",
 			"/doc-protect/index.html",
+			/*Swagger*/
 			"/doc-protect/swagger",
 			"/doc-protect/swagger-ui",
+			/*Adobe*/
 			"/doc-protect/adobe",
 			"/doc-protect/adobe-aem",
+			/*Authentiq*/
 			"/doc-protect/authentiq",
 			"/doc-protect/authentiq-api"
 	})
-	public String sentinelDocProtectRoute(HttpServletRequest request, HttpServletResponse response) {
-		if (request.getServletPath().equals("/doc-protect/logout")) {
-			response.setHeader("Api-Doc-Guard-User", null);
-			return "redirect:/doc-protect/sentinel";
-		}
-		return "redirect:/doc-protect/logout";
+	public String sentinelDocProtectRoute(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+		return apiDocGuardService.sentinel(req, res, ses);
 	}
 
 	@Operation(hidden = true)
 	@GetMapping(path = "/doc-protect/sentinel")
-	public ModelAndView sentinel() {
-		return apiDocGuardService.protector(null, null, null);
+	public ModelAndView sentinel(HttpSession ses) {
+		return apiDocGuardService.protector(null, null, ses, null);
 	}
 
 	@Operation(hidden = true)

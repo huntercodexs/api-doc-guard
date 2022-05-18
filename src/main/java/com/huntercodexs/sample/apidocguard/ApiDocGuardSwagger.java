@@ -2,6 +2,7 @@ package com.huntercodexs.sample.apidocguard;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -43,16 +45,18 @@ public class ApiDocGuardSwagger {
 			"/swagger-ui/protector",
 			"/swagger-ui/doc-protected",
 			"/swagger-ui/index",
-			"/swagger-ui/index.html",
-
-			/*Custom*/
-			"**/swagger-ui/swagger-ui/**.html"
+			"/swagger-ui/index.html"
 	})
-	public String sentinelSwaggerRoute(HttpServletRequest request, HttpServletResponse response) {
-		if (request.getServletPath().equals("/doc-protect/logout")) {
-			response.setHeader("Api-Doc-Guard-User", null);
-			return "redirect:/doc-protect/sentinel";
-		}
+	public String sentinelSwaggerRoute() {
+		return "redirect:/doc-protect/logout";
+	}
+
+	@Operation(hidden = true)
+	@GetMapping(path = {
+			"${springdoc.swagger-ui.path}/swagger-ui/{page}",
+			"${springdoc.swagger-ui.path:/fake-prefix/fake-path}/{page}"
+	})
+	public String sentinelSwaggerCustomRoute(@PathVariable(required = false) String page) {
 		return "redirect:/doc-protect/logout";
 	}
 
@@ -62,8 +66,9 @@ public class ApiDocGuardSwagger {
 	public ModelAndView protector(
 			HttpServletRequest req,
 			HttpServletResponse res,
+			HttpSession ses,
 			@Valid @RequestParam Map<String, String> body
 	) {
-		return apiDocGuardService.protector(req, res, body);
+		return apiDocGuardService.protector(req, res, ses, body);
 	}
 }

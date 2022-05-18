@@ -9,9 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class ApiDocGuardService {
@@ -21,9 +23,6 @@ public class ApiDocGuardService {
 
     @Value("${apidocguard.data.crypt.type:}")
     String dataCryptTpe;
-
-    @Value("${apidocguard.secret:}")
-    String apiDocGuardSecret;
 
     @Value("${apidocguard.type:swagger}")
     String apiDocGuardType;
@@ -40,6 +39,26 @@ public class ApiDocGuardService {
     @Autowired
     ApiDocGuardRepository apiDocGuardRepository;
 
+    public String sentinel(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+        if (req.getServletPath().equals("/doc-protect/logout")) {
+
+            res.setHeader("Api-Doc-Guard-User", null);
+
+            if (ses.getAttribute("ApiDocGuardFormSecret") != null) {
+                ses.removeAttribute("ApiDocGuardFormSecret");
+                System.out.println("[FORM SESSION REMOVED] ApiDocGuardFormSecret: "+ ses.getAttribute("ApiDocGuardFormSecret"));
+            }
+
+            if (ses.getAttribute("ApiDocGuardUser") != null) {
+                ses.removeAttribute("ApiDocGuardUser");
+                System.out.println("[USER SESSION REMOVED] ApiDocGuardUser: "+ ses.getAttribute("ApiDocGuardUser"));
+            }
+
+            return "redirect:/doc-protect/sentinel";
+        }
+        return "redirect:/doc-protect/logout";
+    }
+
     public boolean login(HttpServletRequest req, HttpServletResponse res, Map<String, String> body) {
 
         try {
@@ -52,7 +71,7 @@ public class ApiDocGuardService {
                 return false;
             }
 
-            String passwordCrypt = dataCrypt(password);
+            String passwordCrypt = crypt(password);
             ApiDocGuardEntity apiDocGuardEntity = apiDocGuardRepository.findByLogin(username, passwordCrypt);
 
             if (apiDocGuardEntity != null) {
@@ -63,15 +82,21 @@ public class ApiDocGuardService {
         } catch (RuntimeException re) {
             System.out.println("LOGIN FAIL: " + re.getMessage());
         }
+
         return false;
+
     }
 
-    public ModelAndView protector(HttpServletRequest req, HttpServletResponse res, Map<String, String> body) {
-        firewall(req, body);
+    public ModelAndView protector(HttpServletRequest req, HttpServletResponse res, HttpSession ses, Map<String, String> body) {
+
+        secret(ses, body, null);
+        firewall(req, ses, body);
 
         if (login(req, res, body)) {
+
             System.out.println("GUARD TYPE: " + apiDocGuardType);
             res.setHeader("Api-Doc-Guard-User", body.get("username"));
+            secret(ses, body, body.get("username"));
 
             switch (apiDocGuardType) {
                 case "swagger":
@@ -92,7 +117,10 @@ public class ApiDocGuardService {
         switch (apiDocGuardType) {
             case "swagger":
                 modelAndView.addObject("api_doc_guard_type", "/swagger-ui/protector");
-                modelAndView.addObject("api_doc_guard_sec", DigestUtils.md5DigestAsHex(apiDocGuardSecret.getBytes()));
+                modelAndView.addObject("api_doc_guard_sec",
+                        DigestUtils.md5DigestAsHex(
+                                ses.getAttribute("ApiDocGuardFormSecret").toString().getBytes()
+                        ));
                 break;
             case "adobe":
                 modelAndView.addObject("api_doc_guard_type", "/adobe-aem/protector");
@@ -104,9 +132,11 @@ public class ApiDocGuardService {
         return modelAndView;
     }
 
-    public void firewall(HttpServletRequest req, Map<String, String> body) {
+    public void firewall(HttpServletRequest req, HttpSession ses, Map<String, String> body) {
 
-        System.out.println("=> FIREWALL ++++++++++++++++++++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("FIREWALL IS RUNNING");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
         String secretForm = null;
 
@@ -269,10 +299,14 @@ public class ApiDocGuardService {
             }
 
             if (remoteAddr != null && remoteAddr.equals("0:0:0:0:0:0:0:1")) {
-                throw new RuntimeException("Unauthorized");
+                if (headerRequestUserAgent != null && headerRequestUserAgent.contains("PostmanRuntime")) {
+                    throw new RuntimeException("Unauthorized");
+                }
             }
             if (remoteHost != null && remoteHost.equals("0:0:0:0:0:0:0:1")) {
-                throw new RuntimeException("Unauthorized");
+                if (headerRequestUserAgent != null && headerRequestUserAgent.contains("PostmanRuntime")) {
+                    throw new RuntimeException("Unauthorized");
+                }
             }
             if (serverName != null && !serverName.equals("localhost") && !serverName.equals(apiDocServerName)) {
                 throw new RuntimeException("Unauthorized");
@@ -287,7 +321,7 @@ public class ApiDocGuardService {
                 throw new RuntimeException("Unauthorized");
             }
             if (authorization == null) {
-                authorization = DigestUtils.md5DigestAsHex(apiDocGuardSecret.getBytes());
+                authorization = DigestUtils.md5DigestAsHex(ses.getAttribute("ApiDocGuardFormSecret").toString().getBytes());
             }
 
         } else {
@@ -300,11 +334,12 @@ public class ApiDocGuardService {
                 throw new RuntimeException("Unauthorized");
             }
 
-            secretForm = DigestUtils.md5DigestAsHex(apiDocGuardSecret.getBytes());
-            authorization = DigestUtils.md5DigestAsHex(apiDocGuardSecret.getBytes());
+            secretForm = DigestUtils.md5DigestAsHex(ses.getAttribute("ApiDocGuardFormSecret").toString().getBytes());
+            authorization = DigestUtils.md5DigestAsHex(ses.getAttribute("ApiDocGuardFormSecret").toString().getBytes());
         }
 
-        if (!apiDocGuardSecret.equals("")) {
+        System.out.println("SESSION IS: "+ses.getAttribute("ApiDocGuardFormSecret").toString());
+        if (!ses.getAttribute("ApiDocGuardFormSecret").toString().equals("")) {
             System.out.println("Authorization Checker: " + authorization);
 
             if (!authorization.equals(secretForm)) {
@@ -313,7 +348,7 @@ public class ApiDocGuardService {
         }
     }
 
-    public String dataCrypt(String data) {
+    public String crypt(String data) {
         if (dataCryptTpe.equals("md5")) {
             return DigestUtils.md5DigestAsHex(data.getBytes());
         } else if (dataCryptTpe.equals("bcrypt")) {
@@ -348,7 +383,7 @@ public class ApiDocGuardService {
 
             Date now = new Date();
             String currentDate = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").format(now);
-            String passwordCrypt = dataCrypt(password);
+            String passwordCrypt = crypt(password);
 
             result = "INSERT INTO api_doc_guard (active,createdAt,deletedAt,email,level,name,password,updatedAt,username) " +
                     "VALUES ('"+active+"','"+currentDate+"',NULL,'"+email+"','"+level+"','"+name+"','"+passwordCrypt+"',NULL,'"+username+"');";
@@ -358,5 +393,20 @@ public class ApiDocGuardService {
         }
 
         return result;
+    }
+
+    private void secret(HttpSession ses, Map<String, String> body, String user) {
+        if (body == null || body.size() <= 0) {
+            ses.setAttribute("ApiDocGuardFormSecret", UUID.randomUUID().toString());
+            System.out.println("[FORM SESSION CREATE] ApiDocGuardFormSecret: " + ses.getAttribute("ApiDocGuardFormSecret"));
+        } else {
+            System.out.println("[FORM SESSION EXISTS] ApiDocGuardFormSecret: " + ses.getAttribute("ApiDocGuardFormSecret"));
+
+            if (user != null) {
+                String userSession = "{\"username\": \"" + user + "\", \"id\": \"" + ses.getAttribute("ApiDocGuardFormSecret") + "\"}";
+                ses.setAttribute("ApiDocGuardUser", userSession);
+                System.out.println("[USER SESSION CREATE] ApiDocGuardUser: " + ses.getAttribute("ApiDocGuardUser"));
+            }
+        }
     }
 }
