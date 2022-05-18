@@ -36,7 +36,6 @@ public class ApiDocGuardSwagger {
 			"/swagger/sign",
 			"/swagger/viewer",
 			"/swagger/logout",
-			/*"/swagger/protector",*/
 			"/swagger/doc-protected",
 			"/swagger/index",
 			"/swagger/index.html",
@@ -48,7 +47,6 @@ public class ApiDocGuardSwagger {
 			"/swagger-ui/sign",
 			"/swagger-ui/viewer",
 			"/swagger-ui/logout",
-			/*"/swagger-ui/protector",*/
 			"/swagger-ui/doc-protected",
 			"/swagger-ui/index",
 			"/swagger-ui/index.html"

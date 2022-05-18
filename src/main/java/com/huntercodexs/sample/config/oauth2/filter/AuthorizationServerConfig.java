@@ -25,9 +25,6 @@ import org.springframework.security.oauth2.provider.request.DefaultOAuth2Request
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
-import javax.servlet.http.HttpSession;
-import java.util.UUID;
-
 @Slf4j
 @Configuration
 @EnableWebSecurity
@@ -137,8 +134,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .antMatchers(swaggerCustomPath+"/swagger-ui/**.html").permitAll()
                 .antMatchers(apiPrefix+swaggerCustomPath).permitAll()
                 .antMatchers(apiPrefix+swaggerCustomPath+"/swagger-ui/**.html").permitAll()
-                .antMatchers(swaggerCustomerPath()).permitAll()
-                .antMatchers(apiPrefix+swaggerCustomerPath()).permitAll()
+                .antMatchers(swaggerCustomizedPath()).permitAll()
+                .antMatchers(apiPrefix+ swaggerCustomizedPath()).permitAll()
 
                 /*SWAGGER ROUTES*/
                 .antMatchers("/swagger/**").permitAll()
@@ -168,7 +165,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
        }
 
-       private String swaggerCustomerPath() {
+       private String swaggerCustomizedPath() {
            String[] swaggerSetCustomPath = swaggerCustomPath.split("/");
            StringBuilder swaggerCustomizedPath = new StringBuilder();
            if (swaggerSetCustomPath.length > 0) {

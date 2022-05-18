@@ -49,19 +49,12 @@ public class ApiDocGuard {
 			"/doc-protect/",
 			"/doc-protect/sign",
 			"/doc-protect/viewer",
-			/*"/doc-protect/protector",*/
 			"/doc-protect/doc-protected",
 			"/doc-protect/index.html",
 			"/doc-protect/generator/user",
-			/*Swagger*/
+			/*Swagger Routes*/
 			"/doc-protect/swagger",
-			"/doc-protect/swagger-ui",
-			/*Adobe*/
-			"/doc-protect/adobe",
-			"/doc-protect/adobe-aem",
-			/*Authentiq*/
-			"/doc-protect/authentiq",
-			"/doc-protect/authentiq-api"
+			"/doc-protect/swagger-ui"
 	})
 	public String docProtectRoute(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
 		return apiDocGuardRedirect.sentinel(req, res, ses);

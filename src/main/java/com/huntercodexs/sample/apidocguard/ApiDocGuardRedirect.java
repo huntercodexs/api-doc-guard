@@ -29,13 +29,8 @@ public class ApiDocGuardRedirect {
         /*Session is active*/
         if (ses.getAttribute("ApiDocGuardUser") != null) {
             ses.setAttribute("ApiDocGuardRefresh", "1");
-            switch (apiDocGuardType) {
-                case "swagger":
-                    return "redirect:/swagger-ui/protector";
-                case "adobe":
-                    return "redirect:/adobe-aem/protector";
-                case "authentiq":
-                    return "redirect:/authentiq-api/protector";
+            if (apiDocGuardType.equals("swagger")) {
+                return "redirect:/swagger-ui/protector";
             }
         }
         ses.setAttribute("ApiDocGuardRefresh", null);
