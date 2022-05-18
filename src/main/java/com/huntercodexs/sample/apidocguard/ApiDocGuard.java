@@ -38,7 +38,7 @@ public class ApiDocGuard {
 			"/api-docs-guard/swagger-config"
 	})
 	public String apiDocsRoute(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
-		return apiDocGuardRedirect.logout(req, res, ses);
+		return apiDocGuardRedirect.sentinel(req, res, ses);
 	}
 
 	@Operation(hidden = true)
@@ -52,6 +52,7 @@ public class ApiDocGuard {
 			/*"/doc-protect/protector",*/
 			"/doc-protect/doc-protected",
 			"/doc-protect/index.html",
+			"/doc-protect/generator/user",
 			/*Swagger*/
 			"/doc-protect/swagger",
 			"/doc-protect/swagger-ui",

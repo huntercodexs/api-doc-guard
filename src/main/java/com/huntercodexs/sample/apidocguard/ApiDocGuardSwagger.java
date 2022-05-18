@@ -58,18 +58,6 @@ public class ApiDocGuardSwagger {
 	}
 
 	@Operation(hidden = true)
-	@GetMapping(path = "/swagger-ui/protector")
-	public ModelAndView swagger(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
-		Map<String, String> body = new HashMap<>();
-		try {
-			body.put("refresh", ses.getAttribute("refresh").toString());
-		} catch (RuntimeException re) {
-			apiDocGuardHelper.debug("SWAGGER-UI -> PROTECTOR FOUND AN ERROR !!!", "warn");
-		}
-		return apiDocGuardViewer.protector(req, res, ses, body);
-	}
-
-	@Operation(hidden = true)
 	@GetMapping(path = {
 			"${springdoc.swagger-ui.path}/swagger-ui/{page}",
 			"${springdoc.swagger-ui.path:/fake-prefix/fake-path}/{page}"
@@ -81,6 +69,18 @@ public class ApiDocGuardSwagger {
 			@PathVariable(required = false) String page
 	) {
 		return apiDocGuardRedirect.sentinel(req, res, ses);
+	}
+
+	@Operation(hidden = true)
+	@GetMapping(path = "/swagger-ui/protector")
+	public ModelAndView swagger(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+		Map<String, String> body = new HashMap<>();
+		try {
+			body.put("ApiDocGuardRefresh", ses.getAttribute("ApiDocGuardRefresh").toString());
+		} catch (RuntimeException re) {
+			apiDocGuardHelper.debug("SWAGGER-UI -> PROTECTOR FOUND AN ERROR !!!", "warn");
+		}
+		return apiDocGuardViewer.protector(req, res, ses, body);
 	}
 
 	@Operation(hidden = true)

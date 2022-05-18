@@ -28,7 +28,7 @@ public class ApiDocGuardRedirect {
     public String router(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
         /*Session is active*/
         if (ses.getAttribute("ApiDocGuardUser") != null) {
-            ses.setAttribute("refresh", "1");
+            ses.setAttribute("ApiDocGuardRefresh", "1");
             switch (apiDocGuardType) {
                 case "swagger":
                     return "redirect:/swagger-ui/protector";
@@ -38,7 +38,7 @@ public class ApiDocGuardRedirect {
                     return "redirect:/authentiq-api/protector";
             }
         }
-        ses.setAttribute("refresh", null);
+        ses.setAttribute("ApiDocGuardRefresh", null);
         return "redirect:/doc-protect/protector";
     }
 
@@ -53,6 +53,11 @@ public class ApiDocGuardRedirect {
         if (ses.getAttribute("ApiDocGuardUser") != null) {
             ses.removeAttribute("ApiDocGuardUser");
             apiDocGuardHelper.debug("[USER SESSION REMOVED] ApiDocGuardUser: "+ ses.getAttribute("ApiDocGuardUser"), "");
+        }
+
+        if (ses.getAttribute("ApiDocGuardRefresh") != null) {
+            ses.removeAttribute("ApiDocGuardRefresh");
+            ses.setAttribute("ApiDocGuardRefresh", "");
         }
 
         return "redirect:/doc-protect/login";
