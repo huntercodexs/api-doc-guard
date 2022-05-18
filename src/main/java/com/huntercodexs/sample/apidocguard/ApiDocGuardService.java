@@ -87,33 +87,10 @@ public class ApiDocGuardService {
 
     }
 
-    public ModelAndView protector(HttpServletRequest req, HttpServletResponse res, HttpSession ses, Map<String, String> body) {
-
-        secret(ses, body, null);
-        firewall(req, ses, body);
-
-        if (login(req, res, body)) {
-
-            System.out.println("GUARD TYPE: " + apiDocGuardType);
-            res.setHeader("Api-Doc-Guard-User", body.get("username"));
-            secret(ses, body, body.get("username"));
-
-            switch (apiDocGuardType) {
-                case "swagger":
-                    ModelAndView modelAndView = new ModelAndView("apidocguard/swagger-ui/index");
-                    modelAndView.addObject("api_docs_path", apiDocsPath);
-                    modelAndView.addObject("swagger_layout", swaggerLayout);
-                    modelAndView.addObject("show_url_api_docs", showUrlApiDocs);
-                    return modelAndView;
-                case "adobe":
-                    return new ModelAndView("apidocguard/adobe-aem/index");
-                case "authentiq":
-                    return new ModelAndView("apidocguard/authentiq-api/index");
-            }
-
-        }
+    public ModelAndView protect(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
 
         ModelAndView modelAndView = new ModelAndView("apidocguard/login");
+
         switch (apiDocGuardType) {
             case "swagger":
                 modelAndView.addObject("api_doc_guard_type", "/swagger-ui/protector");
@@ -129,7 +106,45 @@ public class ApiDocGuardService {
                 modelAndView.addObject("api_doc_guard_type", "/authentiq-api/protector");
                 break;
         }
+
         return modelAndView;
+    }
+
+    public ModelAndView index(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+        System.out.println("GUARD TYPE: " + apiDocGuardType);
+
+        switch (apiDocGuardType) {
+            case "swagger":
+                ModelAndView modelAndView = new ModelAndView("apidocguard/swagger-ui/index");
+                modelAndView.addObject("api_docs_path", apiDocsPath);
+                modelAndView.addObject("swagger_layout", swaggerLayout);
+                modelAndView.addObject("show_url_api_docs", showUrlApiDocs);
+                return modelAndView;
+            case "adobe":
+                return new ModelAndView("apidocguard/adobe-aem/index");
+            case "authentiq":
+                return new ModelAndView("apidocguard/authentiq-api/index");
+        }
+
+        throw new RuntimeException("Error on application, invalid Guard Type: " + apiDocGuardType);
+    }
+
+    public ModelAndView protector(HttpServletRequest req, HttpServletResponse res, HttpSession ses, Map<String, String> body) {
+
+        secret(ses, body, null);
+        firewall(req, ses, body);
+
+        if (ses.getAttribute("ApiDocGuardUser") != null) {
+            return index(req, res, ses);
+        }
+
+        if (login(req, res, body)) {
+            res.setHeader("Api-Doc-Guard-User", body.get("username"));
+            secret(ses, body, body.get("username"));
+            return index(req, res, ses);
+        }
+
+        return protect(req, res, ses);
     }
 
     public void firewall(HttpServletRequest req, HttpSession ses, Map<String, String> body) {
