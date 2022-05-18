@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -17,7 +18,13 @@ import java.util.Map;
 public class ApiDocGuard {
 
 	@Autowired
-	ApiDocGuardService apiDocGuardService;
+	ApiDocGuardHelper apiDocGuardHelper;
+
+	@Autowired
+	ApiDocGuardViewer apiDocGuardViewer;
+
+	@Autowired
+	ApiDocGuardRedirect apiDocGuardRedirect;
 
 	@Operation(hidden = true)
 	@GetMapping(path = {
@@ -30,8 +37,8 @@ public class ApiDocGuard {
 			"/api-docs-guard",
 			"/api-docs-guard/swagger-config"
 	})
-	public String sentinelApiDocsRoute() {
-		return "redirect:/doc-protect/logout";
+	public String apiDocsRoute(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+		return apiDocGuardRedirect.sentinel(req, res, ses);
 	}
 
 	@Operation(hidden = true)
@@ -40,40 +47,48 @@ public class ApiDocGuard {
 			"/error",
 			"/doc-protect",
 			"/doc-protect/",
-			"/doc-protect/login",
 			"/doc-protect/sign",
 			"/doc-protect/viewer",
-			"/doc-protect/logout",
-			"/doc-protect/protector",
 			"/doc-protect/doc-protected",
-			"/doc-protect/index",
 			"/doc-protect/index.html",
+			"/doc-protect/generator/user",
+			/*Swagger Routes*/
 			"/doc-protect/swagger",
-			"/doc-protect/swagger-ui",
-			"/doc-protect/adobe",
-			"/doc-protect/adobe-aem",
-			"/doc-protect/authentiq",
-			"/doc-protect/authentiq-api"
+			"/doc-protect/swagger-ui"
 	})
-	public String sentinelDocProtectRoute(HttpServletRequest request, HttpServletResponse response) {
-		if (request.getServletPath().equals("/doc-protect/logout")) {
-			response.setHeader("Api-Doc-Guard-User", null);
-			return "redirect:/doc-protect/sentinel";
-		}
-		return "redirect:/doc-protect/logout";
+	public String docProtectRoute(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+		return apiDocGuardRedirect.sentinel(req, res, ses);
 	}
 
 	@Operation(hidden = true)
-	@GetMapping(path = "/doc-protect/sentinel")
-	public ModelAndView sentinel() {
-		return apiDocGuardService.protector(null, null, null);
+	@GetMapping(path = "/doc-protect/login")
+	public ModelAndView login(HttpSession ses) {
+		return apiDocGuardViewer.protect(null, null, ses, "--login");
+	}
+
+	@Operation(hidden = true)
+	@GetMapping(path = "/doc-protect/logout")
+	public String logout(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+		return apiDocGuardRedirect.logout(req, res, ses);
+	}
+
+	@Operation(hidden = true)
+	@GetMapping(path = "/doc-protect/router")
+	public String router(HttpServletRequest req, HttpServletResponse res, HttpSession ses) {
+		return apiDocGuardRedirect.router(req, res, ses);
+	}
+
+	@Operation(hidden = true)
+	@GetMapping(path = "/doc-protect/protector")
+	public ModelAndView protector(HttpSession ses) {
+		return apiDocGuardViewer.protector(null, null, ses, null);
 	}
 
 	@Operation(hidden = true)
 	@PostMapping(path = "/doc-protect/generator/user", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	@ResponseBody
 	public String generator(@Valid @RequestParam Map<String, String> body) {
-		return apiDocGuardService.generator(body);
+		return apiDocGuardHelper.generator(body);
 	}
 
 }
